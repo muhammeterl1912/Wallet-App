@@ -87,7 +87,8 @@ const calculateAndUpdate = () => {
   if (expenses > income) {
     remainingTd.style.color = "red";
     remainingT.style.color = "red";
-  } else if (expenses < income) {
+  } 
+   if (expenses < income) {
     remainingTd.style.color = "black";
     remainingT.style.color = "black";
   }
