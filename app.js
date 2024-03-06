@@ -3,10 +3,10 @@
 const addBtn = document.getElementById("ekle-btn");
 const incomeInput = document.getElementById("gelir-input");
 const addForm = document.getElementById("ekle-formu");
-
 const incomeTd = document.getElementById("geliriniz");
 const expenseTd = document.getElementById("gideriniz");
 const remainingTd = document.getElementById("kalan");
+const remainingT = document.getElementById("kalanTh");
 
 //& Variables
 
@@ -80,22 +80,27 @@ const harcamayiDomaYaz = ({ id, miktar, tarih, alan }) => {
 // Calculate and Update
 
 const calculateAndUpdate = () => {
-  const giderler = listOfExpense.reduce(
+  const expenses = listOfExpense.reduce(
     (toplam, harcama) => toplam + Number(harcama.miktar),
     0
   );
+  if (expenses > income) {
+    remainingTd.style.color = "red";
+    remainingT.style.color = "red";
+  } else if (expenses < income) {
+    remainingTd.style.color = "black";
+    remainingT.style.color = "black";
+  }
 
-  // console.log(giderler)
-
-  expenseTd.textContent = giderler;
+  expenseTd.textContent = expenses;
   incomeTd.textContent = income;
-  remainingTd.textContent = income - giderler;
+  remainingTd.textContent = income - expenses;
 };
 
 //? Event listeners
 
 window.addEventListener("load", () => {
-  income = Number(localStorage.getItem("income")) || 0; //! Local storage den incomei al numberlaştır. Veri yoksa 0 ata
+  income = Number(localStorage.getItem("income")) || 0;
   listOfExpense = JSON.parse(localStorage.getItem("harcamalar")) || [];
 
   listOfExpense.forEach((harcama) => {
