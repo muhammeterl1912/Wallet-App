@@ -10,7 +10,6 @@ This is a Wallet app built with JavaScript and styled using Bootstrap. It utiliz
 
 
 ## Demo
-
 https://muhammeterl1912.github.io/Wallet-App/
 
 
